@@ -1,24 +1,3 @@
-# vue3-ts
+请使用npm run serve运行
 
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+相关的服务器代码在->[loginandregister](https://github.com/MQliferecord/loginAndRegister)内
