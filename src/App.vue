@@ -1,30 +1,50 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+  <div class="box">
+    <Header v-if="!isFullHeight"></Header>
+    <transition name="inout"> 
+      <router-view></router-view>
+    </transition>
+  </div>
 </template>
 
+<script lang="ts">
+import { defineComponent, computed } from "vue";
+import { useRoute } from "vue-router";
+import Header from "./components/Header.vue";
+export default defineComponent({
+  components: {
+    Header,
+  },
+  setup(props, context) {
+    const route = useRoute();
+    const isFullHeight = computed(() => {
+      return route.meta.isAllHeight;
+    });
+    return { isFullHeight };
+  },
+});
+</script>
+
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+.inout-enter-active,
+.inout-leave-active {
+  transition: all 0.8s ease;
 }
-
-nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+.inout-enter-to,
+.inout-leave-form {
+  opacity: 1;
+  transform-origin: bottom right;
+}
+.inout-enter-from,
+.inout-leave-to {
+  opacity: 0;
+  transform-origin: bottom right;
+}
+.box {
+  width: 100vw;
+  height: 100vh;
+  box-sizing: border-box;
+  display: flex;
+  flex-flow: column nowrap;
 }
 </style>
